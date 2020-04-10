@@ -26,7 +26,7 @@ def home(request):
     )
 
 def contact(request, customer_name=''):
-    """Renders the contact page."""
+    """Renders the contact/Helpline page."""
     assert isinstance(request, HttpRequest)
     return render(
         request,
@@ -39,6 +39,7 @@ def contact(request, customer_name=''):
         }
     )
 def get_all_users( json_str = False ):
+    """function to retrive json file for JAVASCRIPT filtersearch."""
     conn = sqlite3.connect('shops.db')
     conn.row_factory = sqlite3.Row # This enables column access by name: row['column_name']
     db = conn.cursor()
@@ -46,17 +47,12 @@ def get_all_users( json_str = False ):
     rows = db.execute('''
     SELECT * from register
     ''').fetchall()
-
     conn.commit()
     conn.close()
-
-    #if json_str:
-    #    return json.dumps( [dict(ix) for ix in rows], indent=2) #CREATE JSON
-
     return [dict(ix) for ix in rows]
 
 def about(request,customer_name='vsvai'):
-    """Renders the about page."""
+    """Renders the store page."""
     assert isinstance(request, HttpRequest)
     conn = sqlite3.connect('shops.db')
     cur = conn.cursor()
@@ -77,6 +73,7 @@ def about(request,customer_name='vsvai'):
     )
 
 def logincust(request):
+    """Renders the customer_login page."""
     assert isinstance(request, HttpRequest)
     if request.method=='POST':
         user_name =request.POST['user_name']
@@ -107,6 +104,7 @@ def logincust(request):
    
 
 def register(request):
+    """Renders & retrive the registration of shops."""
     assert isinstance(request, HttpRequest)
     if request.method=='POST': #user want to signup
         conn = sqlite3.connect('shops.db')
@@ -121,11 +119,9 @@ def register(request):
         locality =request.POST['locality']
         pincode =request.POST['pincode']
         date=timezone.datetime.now()
-        #register.user = 'vsvai'
         cur = conn.cursor()
         cur.execute(f"INSERT INTO register VALUES (?,?,?,?,?,?,?,?,?,?,?)",(first_name, last_name, shop_name, contact, store_type, shop_no, city, state, locality, pincode, date))
         conn.commit()    
-        #register1.save()
         return redirect('loginShop')
     else:
         return render(
@@ -139,6 +135,7 @@ def register(request):
         )
 
 def loginShop(request):
+    """Renders the loginShop page."""
     assert isinstance(request, HttpRequest)
     if request.method=='POST':
         user_name =request.POST['user_name']
@@ -169,6 +166,7 @@ def loginShop(request):
     )
 
 def detail(request, customer_name = ''):
+    """Renders the details of order page."""
     assert isinstance(request, HttpRequest)
     conn = sqlite3.connect('shops.db')
     cur = conn.cursor()
@@ -193,6 +191,7 @@ def detail(request, customer_name = ''):
     )
 
 def update(request, shop_name = ''):
+    """Renders the shopkeeper data page."""
     assert isinstance(request, HttpRequest)
     if request.method=='GET':
         conn = sqlite3.connect('shops.db')
@@ -252,9 +251,11 @@ def update(request, shop_name = ''):
         return redirect('about')
     
 def photo(request):
+    """Renders the photo |Not completed yet|"""
     assert isinstance(request, HttpRequest)
     return render(request,'app/photo.html')
 def book(request, customer_name):
+    """Renders the booking page."""
     assert isinstance(request, HttpRequest)
     conn = sqlite3.connect('shops.db')
     cur = conn.cursor()
@@ -310,3 +311,4 @@ def book(request, customer_name):
         conn.commit()
         return redirect('about', customer_name)
     
+    #-------------views___complete--------------------------
