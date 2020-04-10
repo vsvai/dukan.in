@@ -7,6 +7,7 @@ This is the documentation with reference to the Web Based Application DUKAN.
 DESCRIPTION
 ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
+This is the documentation with reference to the Web Based Application DUKAN.
 This Documentation Provides All the necessary Inforamation about the COVID-19.
 
 The Government of India  have posed a lockdown in the entire country to reduce the spread of the deadly virus novel COVID-19. Social Distancing has been suggested and is considered to be the key to minimise its effect on the society. However, it has not been implemented to its full stretch as purchase of daily essential goods is still being carried out and it cannot be avoided. Long queues are visible outside stores of essential goods and products, people do try 
@@ -32,22 +33,24 @@ This will make selling and buying essential goods and services easier in this si
 HARDWARE AND SOFTWARE REQUIREMNETS
 ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
-1. 
-2.
-
+1. Libraries:Django Framework,Pillow,json,sqlite3
+2. Python3, SQLite3.db, javascript, json, HTML, CSS
+3. Visual Studio Community {very-helpful}
+4. ONLINE HOSTING SERVER 
+5. Messaging Services
 ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 PROCESS FLOW
 ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
-Users will be directed to the Home page , where he/she can latest update on COVID-19 and some helpful informataions regarding it.
-Then he/she can go to the Shops page where he can select nearby shop and place order regarding his necessities. He/she can contact with the shop owner personal . He has to provide all the necessary details asked.
-He can also see the helpline numbers in the Contact tab .
+Users will be directed to the Home page , where one can see latest update on COVID-19 and some helpful informataions regarding it.
+Then one can go to the Shops page where he can select nearby shop and place order regarding his necessities. One can contact with the shop owner personal . He has to provide all the necessary details asked.K
+One can also see the helpline numbers in the Contact tab .
 
 The Project contains:
 
 App Folder which contains templates.
 
-Templates contain the basic Html pages of the project.
+Templates contains the basic Html pages of the project.
 
 Also App folder contains many python file such as forms.py, models.py, shops.db, tests.py, views.py .
 
@@ -58,11 +61,12 @@ views.py contains the functions for all the url connected pages.
 
 More in project is the urls.py file which contains all the urls pages.
 Next there are some databases.
+
 Important databases are:
-shops.db
-register table for all the shops.
-customer table to store the database for customers.
-Booking tableo j   for all the bookings made by customers to the shops.
+
+shops.db for all the shops.
+customer database to store the database for customers.
+Booking for all the bookings made by customers to the shops.
 
 Customer Reference.
 
@@ -71,5 +75,6 @@ Also they can pickup the appointment time on the shops website.
 
 All things are made easy to use for the customers by keeping customers perspective in the mind also .
 There will not be any data damage,leakage.
+
 
 ![Dataflowdiagram.JPG](Dataflowdiagram.JPG)
