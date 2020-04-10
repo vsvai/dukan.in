@@ -72,7 +72,4 @@ Also they can pickup the appointment time on the shops website.
 All things are made easy to use for the customers by keeping customers perspective in the mind also .
 There will not be any data damage,leakage.
 
-image:: image.jpg
-  :height: 100px
-  :width: 200 px
-  :scale: 50 %
+![Happy Christmas](Dataflowdiagram.jpg)
