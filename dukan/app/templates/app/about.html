@@ -1,0 +1,316 @@
+{% extends "app/layout.html" %}
+
+{% block content %}
+
+<h2>{{ title }}.</h2>
+
+<title>Search Shops</title>
+<style>
+
+    .custom-select {
+  position: relative;
+  font-family: Arial;
+}
+
+.custom-select select {
+  display: none; /*hide original SELECT element: */
+}
+
+.select-selected {
+  background-color: DodgerBlue;
+}
+
+/* Style the arrow inside the select element: */
+.select-selected:after {
+  position: absolute;
+  content: "";
+  top: 14px;
+  right: 10px;
+  width: 0;
+  height: 0;
+  border: 6px solid transparent;
+  border-color: #fff transparent transparent transparent;
+}
+
+/* Point the arrow upwards when the select box is open (active): */
+.select-selected.select-arrow-active:after {
+  border-color: transparent transparent #fff transparent;
+  top: 7px;
+}
+
+/* style the items (options), including the selected item: */
+.select-items div,.select-selected {
+  color: #ffffff;
+  padding: 8px 16px;
+  border: 1px solid transparent;
+  border-color: transparent transparent rgba(0, 0, 0, 0.1) transparent;
+  cursor: pointer;
+}
+
+/* Style items (options): */
+.select-items {
+  position: absolute;
+  background-color: DodgerBlue;
+  top: 100%;
+  left: 0;
+  right: 0;
+  z-index: 99;
+}
+
+/* Hide the items when the select box is closed: */
+.select-hide {
+  display: none;
+}
+
+.select-items div:hover, .same-as-selected {
+  background-color: rgba(0, 0, 0, 0.1);
+}
+    .list-group-item {
+        width:100%;
+        height:50%;
+        cursor: pointer;
+
+    }
+
+   .basic-grid {
+    display: grid;
+    gap: 1rem;
+    grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+
+
+ }
+
+.card {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background: #353535;
+    font-size: 1.5rem;
+    color: #fff;
+    box-shadow: rgba(3, 8, 20, 0.1) 0px 0.15rem 0.5rem, rgba(2, 8, 20, 0.1) 0px 0.075rem 0.175rem;
+    height: 100%;
+    width: 100%;
+    border-radius: 4px;
+    transition: all 500ms;
+    overflow: hidden;
+
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+ }
+
+    .cool{
+        height:30px;
+       width: auto;
+       border: 2px solid #ccc;
+       border-radius: 2px;
+    }
+    
+
+</style>
+    <!-- search box removed -->
+        <!-- <input type="text" class="searchText" placeholder="Search" > 
+        <button class="search btn btn-primary">Search</button> -->
+        <div class="advancedSearch">
+            <h3>---</h3>
+            <select class="cool" name="store_type"   id="">
+               <option value="" selected disabled>Choose the Type-of-store</option>
+            </select>
+            <select class="cool" name="state" id="">
+                <option value="" selected disabled>Choose State</option>
+            </select>
+            <input class="cool" type="number" placeholder="PinCode">
+            <select class="cool" name="locality" class="custom-select" id="">
+                <option value="" selected disabled>Choose Locality</option>
+                <option value="" class="dropdown-item">Dwarka Mor</option>
+            </select>
+            <button class="btn btn-primary">Filter Search</button>
+         </div>
+        <list-group id="" class="list-group-item basic-grid">
+            {% for shop in all_shops %}
+            <li class="card" >
+                Shop: {{ shop.shop_name }} <br/> 
+                Phone: {{ shop.contact }} <br/>
+            </li>
+            {% endfor %}
+        </list-group>
+        <div class="jumbotron" id="info">
+            {{ customer_name }}<br/>
+        </div>
+
+        <script>
+    const data = JSON.parse('{{ all_shops }}'.replace(/(&#39;)/g,"\""));
+            const shopData = data;
+            console.log(shopData);
+
+function createAndBindStoreTypeDropDown(){
+    var all_store_types = [] , store_type;
+    for(var i = 0; i < shopData.length ; ++i){
+        store_type = shopData[i].store_type;
+        if(all_store_types.indexOf(store_type)==-1){
+            all_store_types.push(store_type);
+            var option = document.createElement("option");
+            option.text = store_type;
+            document.querySelector("select[name='store_type']").appendChild(option);
+        }
+    }
+
+}
+function createAndBindStateDropDown(){
+    var states = [] , state;
+    for(var i =0;i<shopData.length;i++){
+        state = shopData[i].state;
+        if(states.indexOf(state)==-1){
+            states.push(state);
+            var option = document.createElement("option");
+            option.text = state;
+            document.querySelector("select[name='state']").appendChild(option);
+        }
+    }
+
+}
+function createAndBindLocalityDropDown(){
+    var localities = [] , locality;
+    for(var i =0;i<shopData.length;i++){
+        locality = shopData[i].locality;
+        if(localities.indexOf(locality)==-1){
+            localities.push(locality);
+            var option = document.createElement("option");
+            option.text = locality;
+            document.querySelector("select[name='locality']").appendChild(option);
+        }
+    }
+
+}
+createAndBindStoreTypeDropDown();
+createAndBindStateDropDown();
+createAndBindLocalityDropDown();
+// document.querySelector(".search").addEventListener("click",showShops); //search box removed
+document.querySelector(".advancedSearch").addEventListener("click",showAdvancedShops);
+
+
+function showShops(){
+    var list , text;
+    document.querySelector("list-group").innerHTML = "";
+    var searchValue = document.querySelector(".searchText").value.toUpperCase();
+    var flag = 0;
+    for(var i=0;i<shopData.length;i++){
+        if( searchValue == shopData[i].first_name.toUpperCase()    || 
+            searchValue == shopData[i].last_name.toUpperCase()     || 
+            searchValue == shopData[i].shop_name.toUpperCase()     || 
+            searchValue == shopData[i].contact                     || 
+            searchValue == shopData[i].city.toUpperCase()          ||
+            searchValue == shopData[i].state.toUpperCase()         ||
+            searchValue == shopData[i].locality.toUpperCase()      ||
+            searchValue == shopData[i].pincode                     ||
+            searchValue == shopData[i].store_type.toUpperCase()    ||
+            searchValue == shopData[i].shop_no                     ||
+            searchValue == shopData[i].country.toUpperCase()
+
+        ){
+            flag = 1;
+            list = document.createElement("li");
+            text = document.createTextNode(shopData[i].shop_name);
+            list.appendChild(text);
+            console.log(list);
+            document.querySelector("list-group").appendChild(list);
+        }
+    }
+    if(flag == 0){
+        list = document.createElement("li");
+        text = document.createTextNode("No Data Found Please Try Advanced Search");
+        list.appendChild(text);
+        document.querySelector("list-group").appendChild(list);
+    }
+    var li = document.querySelectorAll("li");
+    var length = li.length;
+    for(var i=0;i<length;i++){
+        li[i].classList.add("list-group-item");
+        li[i].addEventListener("click",showMoreInfo);
+    }
+}
+
+function showAdvancedShops(){
+    var flag = 0,list,text;
+    document.querySelector("list-group").innerHTML = "";
+    var countryName = document.querySelector("select[name='store_type']").value.toUpperCase();
+    var stateName = document.querySelector("select[name='state']").value.toUpperCase();
+    var localityName = document.querySelector("select[name='locality']").value.toUpperCase();
+    var pin = document.querySelector("input[placeholder='PinCode']").value;
+    for(var i=0;i<shopData.length;i++){
+        var isCountry   = (countryName     == shopData[i].store_type.toUpperCase());
+        var isState     = (stateName       == shopData[i].state.toUpperCase());
+        var isLocality  = (localityName    == shopData[i].locality.toUpperCase());
+        var isPinCode   = (pin             == shopData[i].pincode);
+        if(countryName == ""){
+            isCountry = true;
+        }
+        if(stateName == ""){
+            isState = true;
+        }
+        if(localityName == ""){
+            isLocality = true;
+        }
+        if(pin == ""){
+            isPinCode = true;
+        }
+       
+        
+        if(isCountry && isState && isLocality && isPinCode){
+            flag = 1;
+            list = document.createElement("li");
+            list.classList.add("card");
+            text = document.createTextNode(shopData[i].shop_name);
+            list.appendChild(text);
+            document.querySelector("list-group").appendChild(list);
+        }
+    }
+
+    if(flag == 0){
+        list = document.createElement("li");
+        text = document.createTextNode("No Data Found ");
+        list.appendChild(text);
+        document.querySelector("list-group").appendChild(list);
+       
+    }
+    var li = document.querySelectorAll("list-group > li");
+    var length = li.length;
+    for(var i=0;i<length;i++){
+        li[i].classList.add("list-group-item");
+        li[i].addEventListener("click",showMoreInfo);
+    }
+}
+
+function showMoreInfo(){
+    var selectedShop = this.innerHTML;
+    var info;
+    for(var i=0;i<shopData.length;i++){
+        if(selectedShop == shopData[i].shop_name){
+            info = shopData[i];
+        }
+    }
+    console.log(info);
+    var html = "<h5>Shop Name   : "+info.shop_name +"<h5>"+
+    "<h5>Country    : "+info.country +"<h5>"+
+    "<h5>State      : "+info.state +"<h5>"+
+    "<h5>city       : "+info.city +"<h5>"+
+    "<h5>locality   : "+info.locality +"<h5>"+
+    "<h5>PinCode    : "+info.pincode +"<h5>"+
+    "<h5>Shop No    : "+info.shop_no +"<h5>"+
+    "<h5>Contact    : "+info.contact +"<h5>"+
+    "<h5>Owner Name : "+info.first_name +" "+info.last_name+"<h5>"
+   ;
+    var shops = info.shop_name;
+    var shop_url = "{% url 'book' customer_name %}?shop_name=" + info.first_name;
+    
+    document.querySelector("#info").innerHTML = html + "<a class='advancedSearch btn btn-primary' href='" + shop_url + "'>BOOKING</a>";
+}
+        </script>
+
+<div class="jumbotron">           
+<p>Use this area to provide additional information.</p>
+<p><a class="btn btn-default" href="{% url 'loginShop' %}">Log-in Shopkeeper &raquo;</a></p>
+</div>
+
+ {% endblock %}

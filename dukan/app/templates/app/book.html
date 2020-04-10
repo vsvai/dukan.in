@@ -1,0 +1,215 @@
+﻿{% extends "app/layout.html" %}
+
+{% block content %}
+  
+   <div class="container-form">
+    <style>
+            body{
+
+margin:0;
+padding: 0px ;
+font-family: sans-serif;
+background: #d1d8e0;
+}
+
+.boxdiv {
+	position: absolute;
+	top: 100%;
+	left: 100%;
+	transform: translate(-50%,-50%);
+}
+
+.box
+{
+	width: 1200px;
+	padding: 40px;
+	background: #74b9ff;
+	text-align: center;
+	margin-bottom: 30px;
+}
+
+.box h1{
+color: ;
+text-transform: uppercase;
+font-weight:500;
+text-align: center;
+}
+
+
+
+.box input[type ="text"], .box input[type="password"]
+{
+border:0;
+background: none;
+display: block;
+margin: 20px auto;
+text-align: center;
+border : 2px solid #3498db;
+padding: 14px 10px;
+width:90%;
+height:10%;
+outline:none;
+color: white;
+border-radius: 24px;
+transition: 0.50s;
+}
+
+.box input[type ="text"]:hover, .box input[type="password"]:hover
+{
+	width: 300px;
+	border-color: #2ecc71;
+}
+
+
+.box input[type="submit"]
+{
+  border:0;
+background: #ffffff;
+display: block;
+margin: 20px auto;
+text-align:center;
+border : 2px solid black;
+padding: 14px 40px;
+color: white;
+border-radius: 24px;
+transition: 0.50s;
+cursor: pointer;
+}
+
+
+
+
+.box input[type="submit"]:hover
+{
+background: #2ecc71;
+}
+label{
+    padding: 10px;
+    
+    display: table;
+    color: black;
+    margin: 20px auto;
+     }
+
+
+
+        input[type="file"] {
+            display: table-row;
+            
+        }
+.btn
+{
+	border:0;
+background: none;
+display: block;
+margin: 20px auto;
+text-align: center;
+border : 2px solid #2ecc71;
+padding: 14px 40px;
+color: white;
+border-radius: 24px;
+transition: 0.50s;
+cursor: pointer;
+
+}
+  .basic-grid {
+    display: grid;
+    gap: 2rem;
+    grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+
+
+ }
+
+.card {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background: #1f69ba;
+    font-size: 1.5rem;
+    color: #fff;
+    box-shadow: rgba(3, 8, 20, 0.1) 0px 0.15rem 0.5rem, rgba(2, 8, 20, 0.1) 0px 0.075rem 0.175rem;
+    height: 100%;
+    width: 120px;
+    border-radius: 4px;
+    transition: all 500ms;
+    overflow: hidden;
+    margin-left: 120%;
+    margin-right: 100%;
+    
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+ }
+        </style>
+         <form class=box method="POST" action="{% url 'book' customer_name %}?shop_name={{ shop_name }}" enctype="multipart/form-data">
+             {% csrf_token %}
+       <h1 class="para"> Booking </h1>
+             <label for="books">Enter your items || Quantity</label>
+       <textarea cols="35" rows="11" input type="text" name="text" value="Enter your items || Quantity" style="color:black" id="books" required/></textarea>
+        <label > Upload your list [image] : <br/>
+             <br/><input type="file" name="image" id='image'  accept="image/*" required/>
+             </label>
+        <div class="basic-grid">
+
+    <div class="card">
+      <span class="form-label">Pickup Date</span>
+      <select class="form-control" name="date" placeholder="Preferred Day">
+        <option value="Today">Today</option>
+        <option value="Tomorrow">Tomorrow</option>
+      </select>
+    </div>
+    <div class="card">
+      <span class="form-label" >Hour</span>
+      <select class="form-control" name="time">
+        <option>1</option>
+        <option>2</option>
+        <option>3</option>
+        <option>4</option>
+        <option>5</option>
+        <option>6</option>
+        <option>7</option>
+        <option>8</option>
+        <option>9</option>
+        <option>10</option>
+        <option>11</option>
+        <option>12</option>
+      </select>
+      <span class="select-arrow"></span>
+    </div>
+
+
+    <div class="card">
+      <span class="form-label" >Min</span>
+      <select class="form-control" name="minute">
+        <option>05</option>
+        <option>10</option>
+        <option>15</option>
+        <option>20</option>
+        <option>25</option>
+        <option>30</option>
+        <option>35</option>
+        <option>40</option>
+        <option>45</option>
+        <option>50</option>
+        <option>55</option>
+      </select>
+      <span class="select-arrow"></span>
+    </div>
+
+    <div class="card">
+      <span class="form-label" >AM/PM</span>
+      <select class="form-control" name="period">
+        <option>AM</option>
+        <option>PM</option>
+      </select>
+      <span class="select-arrow"></span>
+    </div>
+            </div>
+        <button class="btn btn-primary">Submit</button>
+       </form>
+     </div>
+    
+
+
+{% endblock %}

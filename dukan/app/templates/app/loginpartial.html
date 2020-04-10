@@ -1,0 +1,12 @@
+
+        {% csrf_token %}
+        {% if name %}
+        <ul class="nav navbar-nav navbar-right">
+            <li><span class="navbar-brand">Hello {{ name }}!</span></li>
+            <li><a href="{% url 'home' %}">Log off</a></li>
+        </ul>
+        {% else %}
+        <ul class="nav navbar-nav navbar-right">
+            <li><a href="{% url 'logincust' %}">Log in</a></li>
+        </ul>
+        {% endif %}

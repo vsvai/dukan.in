@@ -1,0 +1,141 @@
+﻿{% extends "app/layout.html" %}
+
+{% block content %}
+  <div>
+        <div class="boxdiv">
+           <style>
+
+
+.boxdiv {
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%,-50%);
+}
+
+.box
+{
+	width: 500px;
+	padding: 40px;
+	background: #191919;
+	text-align: center;
+	margin-bottom: 5px;
+}
+.box1
+{
+	width: 500px;
+	height: 125px;
+	padding: 10px;
+	background: #191919;
+	text-align: center;
+	margin-bottom: 5px;
+}
+
+.box h1{
+color: white;
+text-transform: uppercase;
+font-weight:500;
+text-align: center;
+}
+
+.box1 h1{
+	color: white;
+	text-transform: uppercase;
+	font-weight:500;
+	font-size:15px;
+	text-align: center;
+}
+
+
+.box input[type ="text"], .box input[type="password"]
+{
+border:0;
+background: none;
+display: block;
+margin: 20px auto;
+text-align: center;
+border : 2px solid #3498db;
+padding: 14px 10px;
+width:250px;
+outline:none;
+color: white;
+border-radius: 24px;
+transition: 0.50s;
+}
+
+.box input[type ="text"]:hover, .box input[type="password"]:hover
+{
+	width: 300px;
+	border-color: #2ecc71;
+}
+
+
+.box input[type="submit"]
+{
+  border:0;
+background: none;
+display: block;
+margin: 20px auto;
+text-align:center;
+border : 2px solid #2ecc71;
+padding: 14px 40px;
+color: white;
+border-radius: 24px;
+transition: 0.50s;
+cursor: pointer;
+}
+.box1 input[type="submit"]
+{
+	border:0;
+background: none;
+display: block;
+margin: 20px auto;
+border : 1px solid #2ecc71;
+padding: 14px 40px;
+color: white;
+border-radius: 24px;
+transition: 0.50s;
+cursor: pointer;
+}
+
+
+
+.box input[type="submit"]:hover,.box1 input[type="submit"]:hover
+{
+background: #2ecc71;
+}
+
+.btn
+{
+	border:0;
+background: none;
+display: block;
+margin: 20px auto;
+text-align:center;
+border : 2px solid #2ecc71;
+padding: 14px 40px;
+color: white;
+border-radius: 24px;
+transition: 0.50s;
+cursor: pointer;
+
+}
+</style>
+            <form class="box" action="{% url 'loginShop' %}" method="post">
+                <h1>Login</h1>
+				{% csrf_token %}
+                <input type="text" name="user_name" placeholder="Username" required>
+                <input type="password" name="password" placeholder="Password" required>
+                <input type="submit" name="login" value="login">
+            </form>
+
+            <form class="box1" action="{% url 'register' %}"  method="get">
+                {% csrf_token %}
+				<h1>Don't have an Account?</h1>
+                <input type="submit" name="" value="Sign Up"/>
+				
+					</form>
+
+        </div>
+
+{% endblock %}

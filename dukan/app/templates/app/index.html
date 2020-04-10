@@ -1,0 +1,228 @@
+{% extends "app/layout.html" %}
+
+{% block content %}
+
+<div class="jumbotron">
+    <h1>Dukan</h1>
+    <p class="lead">We have come up with a web based application that will help people know about the items available at a particular store before even going to that shop and 
+            also deciding the time at which they can collect their items.</p>
+    <p><a href="{% url 'about' %}" class="btn btn-primary btn-large">GO Now &raquo;</a></p>
+
+
+<style>
+* {
+  box-sizing: border-box;
+}
+
+/* Style the body */
+body {
+  font-family: Arial, Helvetica, sans-serif;
+  margin: 0;
+}
+
+/* Header/logo Title */
+.header {
+  padding: 10px;
+  text-align: center;
+  background: #dfe6e9;
+  color: white;
+}
+
+/* Increase the font size of the heading */
+.header h1 {
+  font-size: 40px;
+}
+
+/* Column container */
+.row {
+  display: -ms-flexbox; /* IE10 */
+  display: flex;
+  -ms-flex-wrap: wrap; /* IE10 */
+  flex-wrap: wrap;
+}
+
+/* Create two unequal columns that sits next to each other */
+/* Sidebar/left column */
+.side {
+  -ms-flex: 45%; /* IE10 */
+  flex: 45%;
+  
+  padding: 10px;
+  font:sans-serif;
+}
+
+/* Main column */
+.main {
+  -ms-flex: 55%; /* IE10 */
+  flex: 55%;
+  background-color: white;
+  padding: 20px;
+}
+
+   
+
+
+/* Responsive layout - when the screen is less than 700px wide, make the two columns stack on top of each other instead of next to each other */
+@media screen and (max-width: 70%) {
+  .row {
+    flex-direction: column;
+  }
+}
+
+/* Responsive layout - when the screen is less than 400px wide, make the navigation links stack on top of each other instead of next to each other */
+@media screen and (max-width: 400px) {
+  .navbar a {
+    float: none;
+    width: 100%;
+  }
+}
+.w3-content{
+  width:100%;
+ margin-left:auto;
+ margin-right:auto;
+ margin-top:16px!important;
+ margin-bottom:16px!important;
+ height: 50%;
+
+}
+
+input[type="button"]
+{
+  width:32%;
+  border-radius: 3px;
+  padding: 2px;
+  transition: 0.5s;
+
+}
+input[type="button"]:hover
+{
+  background:#1dd1a1;
+}
+
+.mySlides {display:none;}
+
+.item-1,
+.item-2,
+.item-3
+{
+	position: relative;
+  display: block;
+	top: 5px;
+
+  width: 60%;
+
+  font-size: 18px;
+
+	animation-duration: 15s;
+	animation-timing-function: ease-in-out;
+	animation-iteration-count: infinite;
+}
+
+.item-1{
+    
+	animation-name: anim-1;
+}
+
+.item-2{
+	animation-name: anim-2;
+}
+
+.item-3{
+	animation-name: anim-3;
+}
+
+    #onlytext , h3 {
+        font-family:DFKaiSho-SB;
+    }
+.mynewbtn
+{
+	border:0;
+background: none;
+display: block;
+margin: 20px auto;
+border : 1px solid #2ecc71;
+padding: 14px 40px;
+color: black;
+border-radius: 24px;
+transition: 0.50s;
+cursor: pointer;
+}
+.mynewbtn:hover{
+background: #2ecc71;
+}
+
+
+@keyframes anim-1 {
+	0%, 8.3% { left: -100%; opacity: 0; }
+  8.3%,25% { left: 25%; opacity: 1; }
+  33.33%, 100% { left: 110%; opacity: 0; }
+}
+
+@keyframes anim-2 {
+	0%, 33.33% { left: -100%; opacity: 0; }
+  41.63%, 58.29% { left: 25%; opacity: 1; }
+  66.66%, 100% { left: 110%; opacity: 0; }
+}
+
+@keyframes anim-3 {
+	0%, 66.66% { left: -100%; opacity: 0; }
+  74.96%, 91.62% { left: 25%; opacity: 1; }
+  100% { left: 110%; opacity: 0; }
+
+
+}
+
+
+</style>
+
+
+   <p class="item-3">Wash your hands well and often to avoid contamination.<br>
+      Avoid touching eyes,nose or mouth with unwashed hands.<br>
+      Cover your mouth and nose while coughing or sneezing.
+                      </p>
+<p class="item-1">Clean and disinfect frequently touched objects and surfaces.</p>
+
+<p class="item-2">Distance yourself at least 2 meters from people.<br>
+                      Stay Home. Stay Safe. Stay Positive.</p>
+
+</div>
+
+
+
+
+<div class="row">
+  <div class="side">
+
+    <iframe width="100%" height="100%" src="https://www.youtube.com/embed/7E8bho51pZk?rel=0&showinfo=0" frameborder="0"  allowfullscreen></iframe>
+  </div>
+    <div class="main">
+
+        <div id="onlytext">
+      <h3>WHY WE NEED SOCIAL DISTANCING</h3><br />
+
+      Have deep conversations.<br />
+Linger at the breakfast, lunch, and dinner table.<br />
+Share some of your favorite songs, games, books, TV shows, and movies.<br />
+Go on walks or bike rides together.<br />
+Start a garden or do some springtime yard work together.<br />
+Go through old memorabilia or photo albums and talk about your family history.<br />
+Teach your children how to cook, bake and clean.<br />
+Learn something new together whether it's a new craft, home improvement project,or type of exercise.<br />
+Get busy exploring and learning, but don't do it alone.<br />
+
+    </div>
+
+    </div>
+    
+</div>
+  <div class="row">
+    
+    <br>
+    <input type="button" class="mynewbtn" value="Covid 19 India" onclick="iframe_a.location.href='https://www.covid19india.org/'"/>
+    <input type="button" class="mynewbtn" value="WHO" onclick="iframe_a.location.href='https://www.who.int/'"/>
+    <input type="button" class="mynewbtn" value="Updates" onclick="iframe_a.location.href='https://who.sprinklr.com/'"/>
+  <iframe height="500px" width="100%"  src="https://www.covid19india.org/" name="iframe_a" align="middle"></iframe>
+  </div>
+
+
+{% endblock %}

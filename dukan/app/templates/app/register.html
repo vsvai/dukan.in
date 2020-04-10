@@ -1,0 +1,112 @@
+{% extends "app/layout.html" %}
+
+{% block content %}
+  
+   <div class="container-form">
+    <style>
+        body{
+	background-color: #ccc;
+	padding:0px;
+	margin:0px;
+}
+       
+
+.container-form
+{
+	background: #fff;
+	width: 700px;
+	height:600px;
+	border-radius: 03px;
+	margin:0 auto;
+	border-bottom: 1px solid #ccc;
+	margin-top: 50px;
+}
+
+.para
+{
+	color: black;
+	font-family:sans-serif;
+	font-size: 35px;
+	text-align: center;
+	/* border-radius: 03px;*/
+	padding: 15px; 0px; 15px; 0px;
+	margin-bottom: 20px;
+}
+
+.ipt,#stores{
+	width: 300px;
+	height: 45px;
+	border: none;
+	border-radius: 02px;
+	border: 2px solid #ccc;
+	margin-left: 20px;
+	padding-left:05px;
+  border-left : 03px solid #ccc;
+	margin-top:5px;
+	margin-bottom:5px;
+	cursor: pointer;
+}
+#stores
+{
+	height:50px;
+	width: 310px;
+
+}
+
+#heading
+{
+	margin-left: 20px;
+	font-family: sans-serif;
+	margin-top: 15px;
+}
+
+button
+{
+	margin-left: 300px;
+	margin-top: 30px;
+	padding: 15px; 30px; 15px; 30px;
+	background: #ccc;
+}
+
+    </style>
+       
+         <form method="POST" action="{% url 'register' %}" enctype="multipart/form-data">
+             {% csrf_token %}
+       <p class="para"> Registeration Form</p>
+
+       <input type="text" name="first_name" placeholder="First Name" class="ipt" required/>
+       <input type="text" name="last_name" placeholder="Last Name" class="ipt" required/>
+       <br>
+       <input type="text" name="shop_name" placeholder="Shop Name" class="ipt" required/>
+       <input type="tel" name="contact" placeholder="Contact" class="ipt"
+                                             pattern="[0-9]{10}" required/>
+     <br>
+     <select id="stores" name="store_type">
+       <option value="Type of store">Type of store</option>
+       <option value="Chemist Shop">Chemist Shop</option>
+       <option value="Dairy Products">Dairy Products</option>
+       <option value="Grocery Store">Grocery Store</option>
+       <option value="Vegetable Store">Vegetable Store </option>
+       <option value="Fruit Store">Fruit Store </option>
+       <option value="All Purpose Store">All Purpose Store</option>
+      </select>
+      <br>
+     <label id="heading">Address Details : </label>
+     <br>
+     <input type="text" name="shop_no" placeholder="Shop No." class="ipt" required/>
+      <input type="text" name="city" placeholder="City" class="ipt" required/>
+      <input type="text" name="state" placeholder="State" class="ipt" required/>
+        <input type="text" name="locality" placeholder="Locality" class="ipt" required/>
+       <input type="tel" name="pincode" placeholder="Pin Code" class="ipt" pattern="[0-9]{6}" required/>
+       <br>
+          <button>
+            Submit
+            </button>
+
+
+       </form>
+     </div>
+
+
+
+{% endblock %}

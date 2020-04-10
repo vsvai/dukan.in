@@ -1,0 +1,252 @@
+﻿{% extends "app/layout.html" %}
+
+{% block content %}
+    <div class="jumbotron">
+        <h2 style=" color:black">{{ title }}.</h2>
+        <h3 style=" color:black">{{ message }}</h3>
+   <style>
+  table {
+  font-family: arial, sans-serif;
+  border-collapse: collapse;
+  width: 100%;
+}
+
+td, th {
+  border: 1px solid #dddddd;
+  text-align: left;
+  padding: 8px;
+}
+
+tr:nth-child(even) {
+  background-color: orangered;
+}
+       
+  body
+  {
+  margin:0;
+  padding:0;
+  background:#ccc;
+  font-family:sans-serif;
+  color:#fff;
+
+  }
+  .container90{
+    position: absolute;
+    top:50%;
+    left: 50%;
+      transform: translate(-50%,-50%);
+
+  }
+
+  .box70 h1{
+  color: white;
+  text-transform: uppercase;
+  font-weight:270;
+  text-align: center;
+  margin-bottom: 30px;
+
+  }
+
+  label{
+    color:white;
+    font-size: 18px;
+    margin-left: 5px;
+  }
+
+  .box70
+  {
+    width: 95%;
+    height:100%;
+  	padding: 40px;
+  	background: #191919;
+  	text-align:left;
+  	margin-bottom: 3px;
+
+  }
+
+
+  .box70 input[type ="text"], .box70 input[type="tel"]
+  {
+  width: 210px;
+  height: 45px;
+  border: none;
+  background: none;
+  border-radius: 02px;
+  border-bottom: 2px solid #ccc;
+  margin-left: 20px;
+  padding-left:05px;
+  border-bottom : 1.5px solid #fff;
+  margin-top:5px;
+  margin-bottom:8px;
+  color: #fff;
+  cursor: pointer;
+  font-size: 20px;
+  }
+  .box70 input[type ="text"]:hover, .box70 input[type="tel"]:hover
+  {
+
+  	border-color: #2ecc71;
+  }
+  h4{
+    margin-top: 20px;
+  margin-bottom: 5px;
+}
+
+  .box70 input[type="submit"]
+  {
+    border:0;
+  background: none;
+  color:#fff;
+  width: 40vw;
+  display: block;
+  margin: 20px auto;
+  text-align:center;
+  border : 2px solid #2ecc71;
+  padding: 14px 40px;
+  border-radius: 24px;
+  transition: 0.50s;
+  cursor: pointer;
+  
+
+  }
+
+  .box70 input[type="submit"]:hover
+  {
+  background: #2ecc71;
+  }
+
+
+
+
+
+
+        body{
+	background-color: #ccc;
+	padding:0px;
+	margin:0px;
+}
+       
+
+.container-form
+{
+	background: #808080;
+	width: 700px;
+	height:600px;
+	border-radius: 03px;
+	margin:0 auto;
+	border-bottom: 1px solid #ccc;
+	margin-top: 50px;
+}
+
+.para
+{
+	color: black;
+	font-family:sans-serif;
+	font-size: 35px;
+	text-align: center;
+	/* border-radius: 03px;*/
+	padding: 15px; 0px; 15px; 0px;
+	margin-bottom: 20px;
+}
+
+.ipt,#stores{
+	width: 300px;
+	height: 45px;
+	border: none;
+	border-radius: 02px;
+	border: 2px solid #ccc;
+	margin-left: 20px;
+	padding-left:05px;
+  border-left : 03px solid #ccc;
+	margin-top:5px;
+	margin-bottom:5px;
+	cursor: pointer;
+}
+#stores
+{
+	height:50px;
+	width: 310px;
+
+}
+
+#heading
+{
+	margin-left: 20px;
+	font-family: sans-serif;
+	margin-top: 15px;
+}
+
+button
+{
+	margin-left: 300px;
+	margin-top: 30px;
+	padding: 15px; 30px; 15px; 30px;
+	background: #ccc;
+}
+
+    </style>
+ <div class="jumbotron">
+    
+       
+         <form class="box70" method="POST" action="{% url 'update' %}" enctype="multipart/form-data">
+             {% csrf_token %}
+      
+             
+     
+<table>
+  <tr>
+    <th>Name</th> 
+    <th>Contact</th>
+    <th>shop</th>
+    <th>contact</th>
+      <th>details</th> 
+    <th></th>
+    <th>day</th>
+    <th>hour</th>
+      <th>minute</th>
+    <th>am/pm</th>
+  </tr>
+    
+    {%  for i in booking %}
+    <tr>
+        {% for j in i %}
+            <td>{{ j }}</td>
+        {% endfor %}
+    </tr>
+    {% endfor %}
+</table>
+
+     
+        <h1> Edit Profile</h1>
+
+        <label>First Name :<input type="text" name="first_name" value="{{ first_name }}" /></label>
+        <label>Last Name :<input type="text" name="last_name" value="{{ last_name }}"/></label>
+        <br>
+        <label>Shop Name :<input type="text" name="shop_name" value="{{ shop_name }}"/></label>
+        <label>Contact :<input type="tel" name="contact" value="{{ contact }}" pattern="[0-9]{10}"/></label>
+      <br>
+      <h4>Address Details : </h4>
+      <br>
+      <label>Shop No. :<input type="text" name="shop_no" value="{{ shop_no }}"/></label>
+       <label>City :<input type="text" name="city" value="{{ city }}"/></label>
+       <br>
+       <label>State :<input type="text" name="state" value="{{ state }}"/></label>
+             <label>Pin Code :<input type="tel" name="pincode" value="{{ pincode }}" pattern="[0-9]{6}"></label>
+             <br>
+        <label> Locality : <input type="text" name="locality" value="{{ locality }}"/> </label>
+        
+           <input type="submit" name="submit" value="Update"/>
+               </form>
+     
+	  </div>
+     </div>
+{%  for i in booking %}
+<div class="jumbotron " >
+        {% for j in i %}
+          <p style="color:black" >  {{j}}        </p> 
+        {% endfor %}
+    </div>
+      {% endfor %}  
+{% endblock content %}
+
+
