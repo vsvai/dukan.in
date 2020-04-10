@@ -44,6 +44,7 @@ class Database:
         self.cursor.execute(sql, params or ())
         return self.fetchall()
 class register(models.Model):
+    """Not using this."""
     first_name = models.CharField(max_length=20)
     last_name = models.CharField(max_length=20)
     shop_name = models.CharField(max_length=20)
