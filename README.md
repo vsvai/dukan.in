@@ -72,4 +72,4 @@ Also they can pickup the appointment time on the shops website.
 All things are made easy to use for the customers by keeping customers perspective in the mind also .
 There will not be any data damage,leakage.
 
-![Happy Christmas](Dukan/Dataflowdiagram.jpg)
+![Dukan/Dataflowdiagram.JPG](Dukan/Dataflowdiagram.jpg)
