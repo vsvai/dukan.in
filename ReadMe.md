@@ -29,8 +29,12 @@ This will make selling and buying essential goods and services easier in this si
 HARDWARE AND SOFTWARE REQUIREMNETS
 ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
-1. 
-2.
+Libraries:Django Framework,Pillow,json,sqlite3
+Python3, SQLite3.db, javascript, json, HTML, CSS
+Visual Studio Community {very-helpful}
+ONLINE HOSTING SERVER
+Messaging Services
+
 
 ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 PROCESS FLOW
